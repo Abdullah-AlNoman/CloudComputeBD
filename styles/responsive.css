@@ -1,0 +1,210 @@
+/* Responsive CSS File */
+
+/* Tablet Styles (max-width: 1024px) */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 3rem;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-section .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .hero-visual {
+        order: -1;
+    }
+    
+    .hero-card {
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px 30px;
+    }
+}
+
+/* Mobile Styles (max-width: 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    h3 {
+        font-size: 1.5rem;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    /* Navigation */
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: var(--dark);
+        padding: 20px;
+        flex-direction: column;
+        gap: 15px;
+        box-shadow: var(--shadow-md);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .mobile-toggle {
+        display: block;
+    }
+    
+    .nav-actions .btn {
+        display: none;
+    }
+    
+    .user-profile .user-name {
+        display: none;
+    }
+    
+    /* Hero Section */
+    .hero-section {
+        padding-top: 120px;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .hero-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Marketplace */
+    .filters {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .filter-select {
+        width: 100%;
+    }
+    
+    .pc-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    /* Modals */
+    .modal-container {
+        margin: 10px;
+    }
+    
+    .rental-pc-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .rental-pc-image {
+        margin: 0 auto;
+    }
+    
+    .access-actions {
+        flex-direction: column;
+    }
+    
+    /* Admin Panel */
+    .admin-tabs {
+        flex-direction: column;
+    }
+    
+    .admin-table {
+        font-size: 0.9rem;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: 12px 15px;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    /* Footer */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* Small Mobile Styles (max-width: 480px) */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .hero-card-specs {
+        grid-template-columns: 1fr;
+    }
+    
+    .pc-card-specs {
+        grid-template-columns: 1fr;
+    }
+    
+    .payment-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .payment-method-icon {
+        margin: 0 auto;
+    }
+    
+    .bKash-number {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .credential-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .credential-value {
+        width: 100%;
+        word-break: break-all;
+    }
+}
