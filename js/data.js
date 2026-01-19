@@ -1,6 +1,88 @@
 // data.js - Contains all dummy data for the application
 
 // Dummy PC data
+// GitHub Pages compatible data storage
+class GitHubAdmin {
+    constructor() {
+        this.initStorage();
+        this.currentUser = this.getCurrentUser();
+    }
+    
+    initStorage() {
+        // Initialize with demo data if empty
+        const defaultData = {
+            users: [
+                { id: 'admin_001', name: 'Admin User', email: 'admin@cloudbd.com', role: 'admin', password: 'admin123' },
+                { id: 'user_001', name: 'Demo User', email: 'user@cloudbd.com', role: 'user', password: 'user123' }
+            ],
+            pcs: [...], // Your existing PC data
+            payments: [...], // Your existing payment data
+            listings: [...], // Your existing listing data
+            sessions: [] // Your existing session data
+        };
+        
+        // Check and initialize each storage key
+        Object.keys(defaultData).forEach(key => {
+            if (!localStorage.getItem(`cloud_${key}`)) {
+                localStorage.setItem(`cloud_${key}`, JSON.stringify(defaultData[key]));
+            }
+        });
+    }
+    
+    // User management
+    login(username, password) {
+        const users = JSON.parse(localStorage.getItem('cloud_users'));
+        const user = users.find(u => 
+            (u.email === username || u.name === username) && 
+            u.password === password
+        );
+        
+        if (user) {
+            this.currentUser = user;
+            localStorage.setItem('cloud_currentUser', JSON.stringify(user));
+            return user;
+        }
+        return null;
+    }
+    
+    logout() {
+        this.currentUser = null;
+        localStorage.removeItem('cloud_currentUser');
+    }
+    
+    getCurrentUser() {
+        return JSON.parse(localStorage.getItem('cloud_currentUser'));
+    }
+    
+    // Admin specific methods
+    isAdmin() {
+        return this.currentUser && this.currentUser.role === 'admin';
+    }
+    
+    // Export all data (for backup)
+    exportData() {
+        const data = {};
+        Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('cloud_')) {
+                data[key] = JSON.parse(localStorage.getItem(key));
+            }
+        });
+        return JSON.stringify(data, null, 2);
+    }
+    
+    // Import data (for restore)
+    importData(jsonData) {
+        const data = JSON.parse(jsonData);
+        Object.keys(data).forEach(key => {
+            localStorage.setItem(key, JSON.stringify(data[key]));
+        });
+        return true;
+    }
+}
+
+// Global instance
+const cloudAdmin = new GitHubAdmin();
+
 // js/data.js ফাইলে এই পরিবর্তন করুন
 const ADMIN_CREDENTIALS = {
     username: "admin_cloudbd",

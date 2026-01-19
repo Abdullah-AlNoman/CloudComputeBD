@@ -1,6 +1,159 @@
 // main.js - Main application logic
 
 // DOM Elements
+// GitHub-friendly login modal
+function showGitHubLogin() {
+    const modalHTML = `
+    <div class="modal-overlay" id="githubLoginModal">
+        <div class="modal-container glass-card">
+            <div class="modal-header">
+                <h3><i class="fab fa-github"></i> CloudComputeBD Login</h3>
+                <button class="modal-close" id="closeLoginModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="login-tabs">
+                    <button class="login-tab active" data-tab="login">Login</button>
+                    <button class="login-tab" data-tab="register">Register</button>
+                    <button class="login-tab" data-tab="admin">Admin Access</button>
+                </div>
+                
+                <div class="login-content active" id="loginTab">
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginUsername">Username or Email</label>
+                            <input type="text" id="loginUsername" placeholder="admin / user" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" id="loginPassword" placeholder="Enter password" required>
+                        </div>
+                        <div class="demo-credentials">
+                            <p><strong>Demo Credentials:</strong></p>
+                            <p>Admin: admin / admin123</p>
+                            <p>User: user / user123</p>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="login-content" id="registerTab">
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="regName">Full Name</label>
+                            <input type="text" id="regName" placeholder="Your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regEmail">Email</label>
+                            <input type="email" id="regEmail" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" id="regPassword" placeholder="Create password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirm">Confirm Password</label>
+                            <input type="password" id="regConfirm" placeholder="Confirm password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="login-content" id="adminTab">
+                    <div class="admin-info">
+                        <h4><i class="fas fa-shield-alt"></i> Admin Access</h4>
+                        <p>For demonstration purposes, you can login as admin using:</p>
+                        <div class="admin-creds">
+                            <p><strong>Username:</strong> admin</p>
+                            <p><strong>Password:</strong> admin123</p>
+                        </div>
+                        <p class="note">Note: On GitHub Pages, admin panel works with localStorage. All data is stored in your browser.</p>
+                        <button class="btn btn-primary btn-block" id="quickAdminLogin">
+                            <i class="fas fa-rocket"></i> Quick Admin Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    setupLoginModal();
+}
+
+// GitHub Pages specific CSS যোগ করুন
+const githubStyles = `
+/* GitHub Pages specific styles */
+.login-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+    border-radius: var(--radius-md);
+}
+
+.login-tab {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: var(--gray);
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.login-tab.active {
+    background: var(--primary);
+    color: white;
+}
+
+.login-content {
+    display: none;
+}
+
+.login-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.demo-credentials {
+    background: rgba(108, 99, 255, 0.1);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+}
+
+.demo-credentials p {
+    margin: 5px 0;
+    color: var(--gray-light);
+}
+
+.admin-creds {
+    background: rgba(76, 175, 80, 0.1);
+    padding: 15px;
+    border-radius: var(--radius-md);
+    margin: 15px 0;
+}
+
+.note {
+    font-size: 0.85rem;
+    color: var(--warning);
+    font-style: italic;
+    margin-top: 15px;
+}
+`;
+
+// Add styles to head
+document.head.insertAdjacentHTML('beforeend', `<style>${githubStyles}</style>`);
 const navLinks = document.querySelectorAll('.nav-link');
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.querySelector('.nav-menu');
