@@ -4,7 +4,7 @@ session_start();
 $host = "localhost";
 $dbuser = "your_username";
 $dbpass = "your_password";
-$dbname = "cloud_compute_db";
+$dbname = "cloud_compute_bd";
 
 $conn = new mysqli($host, $dbuser, $dbpass, $dbname);
 
