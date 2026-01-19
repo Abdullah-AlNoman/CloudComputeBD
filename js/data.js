@@ -1,6 +1,29 @@
 // data.js - Contains all dummy data for the application
 
 // Dummy PC data
+// js/data.js ফাইলে এই পরিবর্তন করুন
+const ADMIN_CREDENTIALS = {
+    username: "admin_cloudbd",
+    password: "SecurePass123#", // পরিবর্তন করুন
+    email: "admin@cloudcomputebd.com"
+};
+
+// Real authentication function যোগ করুন
+function realAdminLogin(username, password) {
+    if(username === ADMIN_CREDENTIALS.username && 
+       password === ADMIN_CREDENTIALS.password) {
+        // Create admin session
+        const adminUser = {
+            id: 'admin_001',
+            name: 'System Admin',
+            email: ADMIN_CREDENTIALS.email,
+            role: 'admin'
+        };
+        saveCurrentUser(adminUser);
+        return true;
+    }
+    return false;
+}
 const pcs = [
     {
         id: 1,

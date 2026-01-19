@@ -1,6 +1,33 @@
 // admin.js - Admin panel functionality
 
 // DOM Elements
+// Add this to your admin.js
+function protectAdminPanel() {
+    // Check if user is admin
+    if (!currentUser || currentUser.role !== 'admin') {
+        // Redirect to login
+        window.location.href = '#home';
+        showNotification('Admin access required. Please login as admin.', 'error');
+        return false;
+    }
+    
+    // Add session timeout
+    let adminTimeout;
+    function resetAdminTimeout() {
+        clearTimeout(adminTimeout);
+        adminTimeout = setTimeout(() => {
+            if (confirm('Admin session expired. Login again?')) {
+                window.location.reload();
+            }
+        }, 30 * 60 * 1000); // 30 minutes
+    }
+    
+    // Reset on user activity
+    document.addEventListener('mousemove', resetAdminTimeout);
+    document.addEventListener('keypress', resetAdminTimeout);
+    
+    return true;
+}
 const adminTabs = document.querySelectorAll('.admin-tab');
 const adminTabContents = document.querySelectorAll('.admin-tab-content');
 const paymentsTable = document.getElementById('paymentsTable');
